@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Loading } from '../Loading';
 
-import { getUser } from '../../services/userAPI';
+import { getUser } from '../../services/api/user';
 
 import * as S from './styles';
 

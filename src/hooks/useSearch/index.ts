@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { getAlbums } from './provider';
+import { SearchState } from './types';
 
-export const useSearch = create((set) => ({
+export const useSearch = create<SearchState>((set) => ({
   isLoading: false,
   setIsLoading: (value) => set({ isLoading: value }),
 

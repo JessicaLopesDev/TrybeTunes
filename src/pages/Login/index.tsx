@@ -1,53 +1,57 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUser } from '../../services/userAPI';
+import { createUser } from '../../services/api/user';
 import { Loading } from '../../components/Loading';
 
-export function Login() {
-  const [userName, setUserName] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+import * as S from './styles';
+import { useSearch } from '../../hooks/useSearch';
+import { useUser } from '../../hooks/useUser';
+
+export const Login = () => {
+  const { name, setName } = useUser();
+  const { isLoading, setIsLoading } = useSearch();
   const minCharacter = 3;
-  const isButtonDisable = userName.length >= minCharacter;
+  const isButtonDisable = name.length >= minCharacter;
   const navigate = useNavigate();
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUserName(event.target.value);
-  };
-
-  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmitForm = (event: any) => {
     event.preventDefault();
     setIsLoading(true);
-    createUser({ name: userName }).then(() => {
+
+    createUser({ name }).then(() => {
       setIsLoading(false);
       navigate('/search');
     });
   };
 
   return (
-    <form
-      data-testid="page-login"
-      onSubmit={ handleSubmitForm }
-    >
-      <input
-        data-testid="login-name-input"
-        type="text"
-        name="name"
-        placeholder="Digite seu nome aqui"
-        value={ userName }
-        onChange={ handleInputChange }
-      />
+    <S.Container data-testid="page-login">
+      <S.Content>
+        <S.InputBox>
+          <S.Logo src="./images/logo.png" />
+          <S.InputContent>
+            <S.Input
+              data-testid="login-name-input"
+              type="text"
+              name="name"
+              placeholder="qual é o seu nome?"
+              value={name}
+              onChange={({ target }) => setName(target.value)}
+            />
 
-      <button
-        data-testid="login-submit-button"
-        type="submit"
-        disabled={ !isButtonDisable }
-      >
-        Entrar
-      </button>
+            <S.Button
+              data-testid="login-submit-button"
+              type="submit"
+              disabled={!isButtonDisable}
+              onClick={handleSubmitForm}
+            >
+              ENTRAR
+            </S.Button>
+          </S.InputContent>
+        </S.InputBox>
 
-      {
-          isLoading && <Loading />
-      }
-    </form>
+        {isLoading && <Loading />}
+      </S.Content>
+    </S.Container>
   );
-}
+};
