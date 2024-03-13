@@ -1,61 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Loading } from '../Loading';
-import { getUser } from '../../services/api/user';
-import { UserType } from '../../types';
+import React from 'react';
+import { useSearch } from '../../hooks/useSearch';
 
-export function Header() {
+import * as S from './styles';
+
+export const Header = () => {
+  const {
+    setIsLoading,
+    setArtistName,
+    searchInputValue,
+    setSearchInputValue,
+    getAlbums,
+  } = useSearch();
+
   const minCharacter = 2;
-  const isButtonDisable = artistName.length >= minCharacter;
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<UserType>({
-    name: '',
-    email: '',
-    image: '',
-    description: '',
-  });
+  const isButtonDisable = searchInputValue.length >= minCharacter;
 
-  useEffect(() => {
-    const getUserData = async () => {
-      setIsLoading(true);
-      const result = await getUser();
-      setUser(result);
-      setIsLoading(false);
-    };
-    getUserData();
-  }, []);
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  const onInputChange = (value: string) => {
     setArtistName(value);
-    setInputValue(value);
+    setSearchInputValue(value);
   };
 
-  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitForm = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     event.preventDefault();
-    setInputValue('');
-    setIsLoading(true);
+    setIsLoading(false);
+    setSearchInputValue('');
     getAlbums();
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <header data-testid="header-component">
-          <NavLink data-testid="link-to-search" to="/search">
-            Procurar
-          </NavLink>
-          <NavLink data-testid="link-to-favorites" to="/favorites">
-            Favoritos
-          </NavLink>
-          <NavLink data-testid="link-to-profile" to="/profile">
-            Perfil
-          </NavLink>
-          <h4 data-testid="header-user-name">{user.name}</h4>
-        </header>
-      )}
-    </div>
+    <S.Container>
+      <S.Form data-testid="page-login">
+        <S.Input
+          data-testid="search-artist-input"
+          type="text"
+          value={searchInputValue}
+          onChange={({ target }) => onInputChange(target.value)}
+          placeholder="DIGITE A SUA PESQUISA"
+        />
+
+        <S.Button
+          data-testid="search-artist-button"
+          type="submit"
+          disabled={!isButtonDisable}
+          onClick={onSubmitForm}
+        >
+          PROCURAR
+        </S.Button>
+      </S.Form>
+    </S.Container>
   );
-}
+};

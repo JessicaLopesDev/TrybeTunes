@@ -1,28 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { createUser } from '../../services/api/user';
 import { Loading } from '../../components/Loading';
-
-import * as S from './styles';
 import { useSearch } from '../../hooks/useSearch';
 import { useUser } from '../../hooks/useUser';
 
+import * as S from './styles';
+
 export const Login = () => {
-  const { name, setName } = useUser();
-  const { isLoading, setIsLoading } = useSearch();
+  const { name, setName, submitForm } = useUser();
+  const { isLoading } = useSearch();
   const minCharacter = 3;
   const isButtonDisable = name.length >= minCharacter;
-  const navigate = useNavigate();
-
-  const handleSubmitForm = (event: any) => {
-    event.preventDefault();
-    setIsLoading(true);
-
-    createUser({ name }).then(() => {
-      setIsLoading(false);
-      navigate('/search');
-    });
-  };
 
   return (
     <S.Container data-testid="page-login">
@@ -43,7 +29,7 @@ export const Login = () => {
               data-testid="login-submit-button"
               type="submit"
               disabled={!isButtonDisable}
-              onClick={handleSubmitForm}
+              onClick={submitForm}
             >
               ENTRAR
             </S.Button>
