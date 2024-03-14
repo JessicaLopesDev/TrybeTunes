@@ -23,10 +23,10 @@ export function Search() {
                 {albums.map((album) => (
                   <AlbumCard
                     key={album.collectionId}
-                    // artistName={album.artistName}
-                    // collectionId={album.collectionId}
-                    // collectionName={album.collectionName}
-                    // artworkUrl100={album.artworkUrl100}
+                    artistName={album.artistName}
+                    collectionId={album.collectionId}
+                    collectionName={album.collectionName}
+                    artworkUrl100={album.artworkUrl100}
                   />
                 ))}
               </>

@@ -15,4 +15,14 @@ const submitForm = (event: any) => {
   });
 };
 
-export { submitForm };
+const getUser = async () => {
+  const { setIsLoading } = useSearch.getState();
+  const { setName } = useUser.getState();
+  setIsLoading(true);
+
+  const user = await api.getUser();
+  setName(user.name);
+  setIsLoading(false);
+};
+
+export { submitForm, getUser };
