@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { AlbumCardType } from '../../types';
 
+import * as S from './styles';
+
 export const AlbumCard = ({
   artistName,
   collectionId,
@@ -8,15 +10,17 @@ export const AlbumCard = ({
   collectionName,
 }: AlbumCardType) => {
   return (
-    <Link
+    <S.Container
       data-testid={`link-to-album-${collectionId}`}
       to={`/album/${collectionId}`}
     >
-      <div>
-        <img src={artworkUrl100} alt={collectionName} />
-        <h3>{collectionName}</h3>
-        <span>{artistName}</span>
-      </div>
-    </Link>
+      <S.Content>
+        <S.Img src={artworkUrl100} alt={collectionName} />
+        <S.InfoBox>
+          <S.AlbumName>{collectionName}</S.AlbumName>
+          <S.ArtistName>{artistName}</S.ArtistName>
+        </S.InfoBox>
+      </S.Content>
+    </S.Container>
   );
 };

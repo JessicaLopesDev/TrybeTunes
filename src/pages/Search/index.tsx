@@ -9,31 +9,29 @@ export function Search() {
 
   return (
     <S.Container data-testid="page-search">
-      <S.MainContainer>
-        <S.MainContent>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            !!albums &&
-            (!albums.length ? (
-              <S.Title>Nenhum álbum foi encontrado</S.Title>
-            ) : (
-              <>
-                <S.Title>{`Resultado de álbuns de: ${artistName}`}</S.Title>
-                {albums.map((album) => (
-                  <AlbumCard
-                    key={album.collectionId}
-                    artistName={album.artistName}
-                    collectionId={album.collectionId}
-                    collectionName={album.collectionName}
-                    artworkUrl100={album.artworkUrl100}
-                  />
-                ))}
-              </>
-            ))
-          )}
-        </S.MainContent>
-      </S.MainContainer>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        !!albums &&
+        (!albums.length ? (
+          <S.Title>Nenhum álbum foi encontrado</S.Title>
+        ) : (
+          <S.Content>
+            <S.Title>{`Resultado de álbuns de: ${artistName}`}</S.Title>
+            <S.CardBox>
+              {albums.map((album) => (
+                <AlbumCard
+                  key={album.collectionId}
+                  artistName={album.artistName}
+                  collectionId={album.collectionId}
+                  collectionName={album.collectionName}
+                  artworkUrl100={album.artworkUrl100}
+                />
+              ))}
+            </S.CardBox>
+          </S.Content>
+        ))
+      )}
     </S.Container>
   );
 }
