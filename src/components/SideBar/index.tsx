@@ -8,7 +8,6 @@ import { useSearch } from '../../hooks/useSearch';
 
 export const SideBar = () => {
   const { name, getUser } = useUser();
-  const { isLoading } = useSearch();
 
   useEffect(() => {
     getUser();
@@ -16,11 +15,7 @@ export const SideBar = () => {
 
   return (
     <S.Container data-testid="header-component">
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <S.Title data-testid="header-user-name">{`Olá ${name}`}</S.Title>
-      )}
+      <S.Logo src="./images/logo.png" />
       <S.NavContainer>
         <S.Navigation to="/search" data-testid="link-to-search">
           Pesquisar
@@ -31,8 +26,11 @@ export const SideBar = () => {
         <S.Navigation to="/profile" data-testid="link-to-profile">
           Perfil
         </S.Navigation>
-        <S.Navigation to="/profile/edit">Editar perfil</S.Navigation>
       </S.NavContainer>
+      <S.UserInfoBox>
+        <S.UserPhoto src="./images/default-user-icon.jpg" />
+        <S.UserName>{name}</S.UserName>
+      </S.UserInfoBox>
     </S.Container>
   );
 };
