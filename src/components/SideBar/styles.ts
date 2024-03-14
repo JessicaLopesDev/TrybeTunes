@@ -30,6 +30,7 @@ export const NavContainer = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: start;
 `;
 
 export const Navigation = styled(Link)`

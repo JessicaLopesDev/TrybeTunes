@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 240px;
+  height: 100px;
   background-image: url(/images/bluebg2.png);
   background-size: cover;
   display: flex;

@@ -13,7 +13,8 @@ export const Content = styled.main`
   width: 100%;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h4`
+  text-transform: uppercase;
   align-self: center;
   color: #003be5;
   margin: 40px 0 30px 0;

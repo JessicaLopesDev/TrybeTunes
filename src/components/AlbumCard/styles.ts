@@ -7,14 +7,16 @@ export const Container = styled(Link)`
 `;
 
 export const Content = styled.div`
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
 
-export const Img = styled.img`
+export const Img = styled.div`
   border-radius: 7px;
   width: 200px;
+  height: 200px;
 `;
 
 export const InfoBox = styled.div`
@@ -29,6 +31,5 @@ export const AlbumName = styled.h4`
 `;
 
 export const ArtistName = styled.span`
-  /* max-inline-size: 30px; */
   font-size: 12px;
 `;

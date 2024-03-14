@@ -15,7 +15,12 @@ export const AlbumCard = ({
       to={`/album/${collectionId}`}
     >
       <S.Content>
-        <S.Img src={artworkUrl100} alt={collectionName} />
+        <S.Img
+          style={{
+            backgroundImage: `url(${artworkUrl100})`,
+            backgroundSize: 'cover',
+          }}
+        />
         <S.InfoBox>
           <S.AlbumName>{collectionName}</S.AlbumName>
           <S.ArtistName>{artistName}</S.ArtistName>

@@ -13,6 +13,6 @@ export const Main = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  height: calc(100vh - 240px);
+  height: calc(100vh - 100px);
   overflow: auto;
 `;
