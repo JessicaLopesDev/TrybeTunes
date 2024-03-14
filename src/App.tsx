@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { Login } from './pages/Login';
 import { Search } from './pages/Search';
 import { Album } from './pages/Album';

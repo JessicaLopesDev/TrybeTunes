@@ -26,17 +26,19 @@ export const UserPhoto = styled.img`
 export const UserName = styled.span``;
 
 export const NavContainer = styled.nav`
+  height: 150px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const Navigation = styled(Link)`
-  font-size: 20px;
-  opacity: 0.6;
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
   text-decoration: none;
+  color: #444955;
   &:hover {
     font-weight: bold;
-    opacity: 1;
   }
 `;
