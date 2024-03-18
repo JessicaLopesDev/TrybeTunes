@@ -9,14 +9,23 @@ export const useSearch = create<SearchState>((set) => ({
   albums: [],
   setAlbums: (value) => set({ albums: value }),
 
+  favorites: [],
+  setFavorites: (value) => set({ favorites: value }),
+
   musics: [],
   setMusics: (value) => set({ musics: value }),
+
+  favoritesIds: [],
+  setFavoritesIds: (value) => set({ favoritesIds: value }),
 
   searchInputValue: '',
   setSearchInputValue: (value) => set({ searchInputValue: value }),
 
   artistName: '',
   setArtistName: (value) => set({ artistName: value }),
+
+  title: '',
+  setTitle: (value) => set({ title: value }),
 
   getAlbums,
 }));

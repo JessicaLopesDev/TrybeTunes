@@ -8,7 +8,7 @@ type MusicCardProps = {
   previewUrl: string;
   trackId: number;
   isFavorite: (favoriteId: number) => void;
-  isChecked: (favoriteId: number) => boolean;
+  isChecked: boolean;
 };
 
 export function MusicCard({
@@ -22,29 +22,26 @@ export function MusicCard({
     <div>
       <span>{trackName}</span>
 
-      <audio data-testid="audio-component" src={ previewUrl } controls>
-        <track kind="captions" />
-        O seu navegador não suporta o elemento
-        {' '}
-        <code>audio</code>
-        .
+      <audio data-testid="audio-component" src={previewUrl} controls>
+        <track kind="captions" />O seu navegador não suporta o elemento{' '}
+        <code>audio</code>.
       </audio>
 
       <label
-        data-testid={ `checkbox-music-${trackId}` }
-        htmlFor={ `favorite-${trackId}` }
+        data-testid={`checkbox-music-${trackId}`}
+        htmlFor={`favorite-${trackId}`}
       >
-        {isChecked(trackId) ? (
-          <img src={ checkedHeart } alt="favorite" />
+        {isChecked ? (
+          <img src={checkedHeart} alt="favorite" />
         ) : (
-          <img src={ emptyHeart } alt="favorite" />
+          <img src={emptyHeart} alt="favorite" />
         )}
         <input
           type="checkbox"
           hidden
-          id={ `favorite-${trackId}` }
-          checked={ isChecked(trackId) }
-          onChange={ () => isFavorite(trackId) }
+          id={`favorite-${trackId}`}
+          checked={isChecked}
+          onChange={() => isFavorite(trackId)}
         />
       </label>
     </div>

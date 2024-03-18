@@ -7,6 +7,9 @@ export interface SearchState {
   artistName: string;
   setArtistName: (value: string) => void;
 
+  title: string;
+  setTitle: (value: string) => void;
+
   searchInputValue: string;
   setSearchInputValue: (value: string) => void;
 
@@ -15,6 +18,12 @@ export interface SearchState {
 
   musics: SongType[];
   setMusics: (value: SongType[]) => void;
+
+  favorites: SongType[];
+  setFavorites: (value: SongType[]) => void;
+
+  favoritesIds: number[];
+  setFavoritesIds: (value: number[]) => void;
 
   getAlbums: () => void;
 }

@@ -3,9 +3,10 @@ import { useSearch } from '../../hooks/useSearch';
 import { AlbumCard } from '../../components/AlbumCard';
 
 import * as S from './styles';
+import { useState } from 'react';
 
 export function Search() {
-  const { albums, isLoading, artistName } = useSearch();
+  const { albums, isLoading, artistName, title } = useSearch();
 
   return (
     <S.Container data-testid="page-search">
@@ -14,7 +15,7 @@ export function Search() {
       ) : (
         !!albums &&
         (!albums.length ? (
-          <S.Title>Nenhum álbum foi encontrado</S.Title>
+          <S.Title>{title}</S.Title>
         ) : (
           <S.Content>
             <S.Title>{`Resultado de álbuns de: ${artistName}`}</S.Title>
