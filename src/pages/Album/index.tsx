@@ -6,61 +6,15 @@ import { Loading } from '../../components/Loading';
 import { MusicCard } from '../../components/MusicCard';
 import { useSearch } from '../../hooks/useSearch';
 import { addSong, removeSong } from '../../services/favoriteSongsAPI';
+import { useFavorites } from '../../hooks/useFavorites';
 
 export function Album() {
-  const {
-    musics,
-    setMusics,
-    isLoading,
-    setIsLoading,
-    favoritesIds,
-    setFavoritesIds,
-  } = useSearch();
+  const { musics, setMusics, isLoading, setIsLoading } = useSearch();
   const [albumData, setAlbumData] = useState<AlbumType | null>(null);
+  const { favoritesIds, handleFavoriteSong } = useFavorites();
 
   const { id } = useParams();
   const idParam = String(id);
-
-  // const isFavoriteSong = (favoriteId: number) =>
-  //   favorites.some((songId) => songId === favoriteId);
-
-  // const addFavoriteSong = (favoriteId: number) => {
-  //   if (isFavoriteSong(favoriteId)) {
-  //     const filtered = favorites.filter((songId) => songId !== favoriteId);
-  //     setFavorites(filtered);
-  //   } else {
-  //     setFavorites([...favorites, favoriteId]);
-  //   }
-  // };
-
-  const addFavoriteSong = (music: SongType) => {
-    setIsLoading(true);
-    setFavoritesIds([...favoritesIds, music.trackId]);
-
-    addSong(music).then(() => {
-      setIsLoading(false);
-    });
-  };
-
-  const removeFavoriteSong = (music: SongType) => {
-    const filteredIds = favoritesIds.filter(
-      (musicId) => musicId !== music.trackId,
-    );
-    setFavoritesIds(filteredIds);
-    setIsLoading(true);
-
-    removeSong(music).then(() => {
-      setIsLoading(false);
-    });
-  };
-
-  const handleFavoriteSong = (music: SongType, checked: boolean) => {
-    if (checked) {
-      addFavoriteSong(music);
-    } else {
-      removeFavoriteSong(music);
-    }
-  };
 
   useEffect(() => {
     const handleGetMusics = async () => {

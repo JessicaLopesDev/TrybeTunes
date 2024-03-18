@@ -7,9 +7,11 @@ import { getFavoriteSongs, removeSong } from '../../services/favoriteSongsAPI';
 
 import * as S from './styles';
 import { useEffect } from 'react';
+import { useFavorites } from '../../hooks/useFavorites';
 
 export function Favorites() {
-  const { isLoading, favorites, setFavorites, setIsLoading } = useSearch();
+  const { isLoading, setIsLoading } = useSearch();
+  const { favorites, setFavorites } = useFavorites();
 
   useEffect(() => {
     handleGetFavoriteSongs();
@@ -23,10 +25,6 @@ export function Favorites() {
       setFavorites(songs);
     });
   };
-
-  // const isSongChecked = (id: number) => {
-  //   return favorites.some((song) => song.trackId === id);
-  // };
 
   const handleRemoveFavoriteSong = (music: SongType) => {
     setIsLoading(true);

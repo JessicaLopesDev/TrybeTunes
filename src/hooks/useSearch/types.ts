@@ -19,11 +19,5 @@ export interface SearchState {
   musics: SongType[];
   setMusics: (value: SongType[]) => void;
 
-  favorites: SongType[];
-  setFavorites: (value: SongType[]) => void;
-
-  favoritesIds: number[];
-  setFavoritesIds: (value: number[]) => void;
-
   getAlbums: () => void;
 }
