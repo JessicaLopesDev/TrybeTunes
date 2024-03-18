@@ -6,7 +6,6 @@ import { Loading } from '../../components/Loading';
 import { MusicCard } from '../../components/MusicCard';
 import { useSearch } from '../../hooks/useSearch';
 import { addSong, removeSong } from '../../services/favoriteSongsAPI';
-import { A } from 'vitest/dist/types-e3c9754d';
 
 export function Album() {
   const {
@@ -93,8 +92,10 @@ export function Album() {
                     trackName={'trackName' in music ? music.trackName : ''}
                     previewUrl={'previewUrl' in music ? music.previewUrl : ''}
                     trackId={'trackId' in music ? music.trackId : 0}
-                    isFavorite={() => removeFavoriteSong(music)}
-                    isChecked
+                    isFavorite={({ target }) =>
+                      handleFavoriteSong(music, target.checked)
+                    }
+                    isChecked={favoritesIds.includes(music.trackId)}
                   />
                 );
               }

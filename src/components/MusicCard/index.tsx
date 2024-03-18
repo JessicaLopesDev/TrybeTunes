@@ -7,7 +7,7 @@ type MusicCardProps = {
   trackName: string;
   previewUrl: string;
   trackId: number;
-  isFavorite: (favoriteId: number) => void;
+  isFavorite: (prop: any) => void;
   isChecked: boolean;
 };
 
@@ -41,7 +41,7 @@ export function MusicCard({
           hidden
           id={`favorite-${trackId}`}
           checked={isChecked}
-          onChange={() => isFavorite(trackId)}
+          onChange={isFavorite}
         />
       </label>
     </div>
